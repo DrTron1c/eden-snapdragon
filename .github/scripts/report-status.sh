@@ -4,6 +4,7 @@
 set -uo pipefail
 state=$1
 log=${2:-}
+[ -n "$log" ] && log=$(realpath "$log")
 dir=$(mktemp -d)
 cd "$dir"
 git init -q -b ci-status
