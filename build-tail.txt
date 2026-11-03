@@ -1,0 +1,300 @@
+> Task :app:generateMainlineReleaseLocaleConfig
+> Task :app:generateMainlineReleaseResources
+> Task :app:mergeMainlineReleaseNativeLibs
+> Task :app:stripMainlineReleaseDebugSymbols
+> Task :app:mergeMainlineReleaseResources
+> Task :app:packageMainlineReleaseResources
+> Task :app:generateMainlineReleaseBuildConfig
+> Task :app:extractMainlineReleaseNativeSymbolTables
+> Task :app:parseMainlineReleaseLocalResources
+> Task :app:generateSafeArgsMainlineRelease
+> Task :app:dataBindingGenBaseClassesMainlineRelease
+> Task :app:checkMainlineReleaseAarMetadata
+> Task :app:mapMainlineReleaseSourceSetPaths
+> Task :app:createMainlineReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksMainlineRelease
+> Task :app:processMainlineReleaseMainManifest
+> Task :app:processMainlineReleaseManifest
+> Task :app:javaPreCompileMainlineRelease
+> Task :app:processMainlineReleaseManifestForPackage
+> Task :app:mergeMainlineReleaseArtProfile
+> Task :app:extractProguardFiles
+> Task :app:mergeMainlineReleaseStartupProfile
+> Task :app:mergeMainlineReleaseShaders
+> Task :app:compileMainlineReleaseShaders NO-SOURCE
+> Task :app:generateMainlineReleaseAssets UP-TO-DATE
+> Task :app:mergeMainlineReleaseAssets
+> Task :app:extractMainlineReleaseVersionControlInfo
+> Task :app:compressMainlineReleaseAssets
+> Task :app:collectMainlineReleaseDependencies
+> Task :app:sdkMainlineReleaseDependencyData
+> Task :app:validateSigningMainlineRelease
+> Task :app:writeMainlineReleaseAppMetadata
+> Task :app:writeMainlineReleaseSigningConfigVersions
+> Task :app:mergeMainlineReleaseNativeDebugMetadata
+> Task :app:processMainlineReleaseResources
+> Task :app:optimizeMainlineReleaseResources
+> Task :app:compileMainlineReleaseKotlin
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt:395:13 Variable 'Success' is never used
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt:396:13 Variable 'ErrorNotInitialized' is never used
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt:397:13 Variable 'ErrorGetLoader' is never used
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt:398:13 Variable 'ErrorSystemFiles' is never used
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt:399:13 Variable 'ErrorSharedFont' is never used
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt:401:13 Variable 'ErrorUnknown' is never used
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt:402:13 Variable 'ErrorLoader' is never used
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/applets/keyboard/SoftwareKeyboard.kt:36:35 Parameter 'config' is never used
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/applets/keyboard/SoftwareKeyboard.kt:44:58 'SHOW_FORCED: Int' is deprecated. Deprecated in Java
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/dialogs/ChatDialog.kt:72:55 Parameter 'type' is never used, could be renamed to _
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/dialogs/ChatDialog.kt:72:61 Parameter 'message' is never used, could be renamed to _
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/dialogs/QuickSettings.kt:102:39 Name shadowed: name
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/dialogs/QuickSettings.kt:169:9 Parameter 'isEnabled' is never used
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/features/fetcher/ReleaseAdapter.kt:93:25 Name shadowed: body
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/features/fetcher/ReleaseAdapter.kt:100:25 Name shadowed: body
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/features/settings/model/view/SingleChoiceSetting.kt:37:38 Conditional branch result of type Unit is implicitly cast to Any
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/features/settings/model/view/SingleChoiceSetting.kt:38:39 Conditional branch result of type Unit is implicitly cast to Any
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/features/settings/model/view/SingleChoiceSetting.kt:39:21 Conditional branch result of type Int is implicitly cast to Any
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/features/settings/ui/SettingsFragmentPresenter.kt:850:38 Parameter 'sl' is never used
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EditUserDialogFragment.kt:119:34 Type mismatch: inferred type is String? but String was expected
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/FreedrenoSettingsFragment.kt:101:72 Parameter 'variable' is never used, could be renamed to _
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/GamePropertiesFragment.kt:619:32 'getLayoutDirection(View): Int' is deprecated. Deprecated in Java
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/GamePropertiesFragment.kt:620:32 'LAYOUT_DIRECTION_LTR: Int' is deprecated. Deprecated in Java
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/SetupFragment.kt:102:34 'setter for navigationBarColor: Int' is deprecated. Deprecated in Java
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/overlay/OverlayScaleDialog.kt:111:17 Variable 'screenHeight' is never used
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/ui/GamesFragment.kt:270:30 Unnecessary safe call on a non-null receiver of type ExtendedFloatingActionButton
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/ui/GamesFragment.kt:660:34 Unnecessary safe call on a non-null receiver of type ExtendedFloatingActionButton
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/ui/main/MainActivity.kt:117:16 'setter for statusBarColor: Int' is deprecated. Deprecated in Java
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/ui/main/MainActivity.kt:119:16 'setter for navigationBarColor: Int' is deprecated. Deprecated in Java
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/ui/main/MainActivity.kt:216:17 Variable 'packageId' is never used
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/updater/APKInstaller.kt:29:13 This is a delicate API and its use requires care. Make sure you fully read and understand documentation of the declaration that is marked as a delicate API.
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/CustomSettingsHandler.kt:334:44 Parameter 'context' is never used
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/NfcReader.kt:66:20 'getParcelableExtra(String!): T?' is deprecated. Deprecated in Java
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/NfcReader.kt:107:34 Type mismatch: inferred type is ByteArray? but Any was expected
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/SerializableHelper.kt:17:13 'getSerializable(String?): Serializable?' is deprecated. Deprecated in Java
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/SerializableHelper.kt:25:13 'getSerializableExtra(String!): Serializable?' is deprecated. Deprecated in Java
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/SerializableHelper.kt:33:13 'getParcelable(String?): T?' is deprecated. Deprecated in Java
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/SerializableHelper.kt:41:13 'getParcelableExtra(String!): T?' is deprecated. Deprecated in Java
+
+> Task :app:compileMainlineReleaseJavaWithJavac
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :app:mergeMainlineReleaseGeneratedProguardFiles
+> Task :app:processMainlineReleaseJavaRes
+> Task :app:expandMainlineReleaseArtProfileWildcards
+> Task :app:generateMainlineReleaseLintVitalReportModel
+> Task :app:mergeMainlineReleaseJavaResource
+> Task :app:lintVitalAnalyzeMainlineRelease
+> Task :app:minifyMainlineReleaseWithR8
+> Task :app:lintVitalReportMainlineRelease
+> Task :app:lintVitalMainlineRelease
+> Task :app:compileMainlineReleaseArtProfile
+> Task :app:packageMainlineRelease
+> Task :app:createMainlineReleaseApkListingFileRedirect
+> Task :app:assembleMainlineRelease
+
+[Incubating] Problems report is available at: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 29m 25s
+57 actionable tasks: 57 executed
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :app
+WARNING: The option setting 'android.defaults.buildfeatures.buildconfig=true' is deprecated.
+The current default is 'false'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+To keep using this feature, add the following to your module-level build.gradle files:
+    android.buildFeatures.buildConfig = true
+or from Android Studio, click: `Refactor` > `Migrate BuildConfig to Gradle Build Files`.
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preMainlineReleaseBuild UP-TO-DATE
+> Task :app:configureCMakeRelWithDebInfo[arm64-v8a]
+
+> Task :app:buildCMakeRelWithDebInfo[arm64-v8a]
+C/C++: ninja: Entering directory `/home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/.cxx/RelWithDebInfo/21685t4h/arm64-v8a'
+C/C++: [0/2] Re-checking globbed directories...
+C/C++: ninja: no work to do.
+
+> Task :app:mergeMainlineReleaseJniLibFolders UP-TO-DATE
+> Task :app:mergeMainlineReleaseNativeLibs UP-TO-DATE
+> Task :app:stripMainlineReleaseDebugSymbols UP-TO-DATE
+> Task :app:extractMainlineReleaseNativeSymbolTables UP-TO-DATE
+> Task :app:mergeMainlineReleaseNativeDebugMetadata UP-TO-DATE
+> Task :app:buildKotlinToolingMetadata UP-TO-DATE
+> Task :app:checkMainlineReleaseDuplicateClasses UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:dataBindingMergeDependencyArtifactsMainlineRelease UP-TO-DATE
+> Task :app:generateMainlineReleaseResValues
+> Task :app:extractMainlineReleaseSupportedLocales
+> Task :app:generateMainlineReleaseLocaleConfig UP-TO-DATE
+> Task :app:generateMainlineReleaseResources UP-TO-DATE
+> Task :app:packageMainlineReleaseResources
+> Task :app:generateMainlineReleaseBuildConfig
+> Task :app:mergeMainlineReleaseResources
+> Task :app:parseMainlineReleaseLocalResources
+> Task :app:generateSafeArgsMainlineRelease
+> Task :app:dataBindingGenBaseClassesMainlineRelease UP-TO-DATE
+> Task :app:checkMainlineReleaseAarMetadata UP-TO-DATE
+> Task :app:mapMainlineReleaseSourceSetPaths UP-TO-DATE
+> Task :app:createMainlineReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksMainlineRelease
+> Task :app:processMainlineReleaseMainManifest
+> Task :app:processMainlineReleaseManifest
+> Task :app:javaPreCompileMainlineRelease UP-TO-DATE
+> Task :app:mergeMainlineReleaseArtProfile UP-TO-DATE
+> Task :app:processMainlineReleaseManifestForPackage
+> Task :app:extractProguardFiles UP-TO-DATE
+> Task :app:mergeMainlineReleaseStartupProfile UP-TO-DATE
+> Task :app:mergeMainlineReleaseShaders UP-TO-DATE
+> Task :app:compileMainlineReleaseShaders NO-SOURCE
+> Task :app:generateMainlineReleaseAssets UP-TO-DATE
+> Task :app:mergeMainlineReleaseAssets UP-TO-DATE
+> Task :app:compressMainlineReleaseAssets UP-TO-DATE
+> Task :app:extractMainlineReleaseVersionControlInfo UP-TO-DATE
+> Task :app:collectMainlineReleaseDependencies UP-TO-DATE
+> Task :app:sdkMainlineReleaseDependencyData UP-TO-DATE
+> Task :app:validateSigningMainlineRelease UP-TO-DATE
+> Task :app:writeMainlineReleaseAppMetadata UP-TO-DATE
+> Task :app:writeMainlineReleaseSigningConfigVersions UP-TO-DATE
+> Task :app:processMainlineReleaseResources
+> Task :app:optimizeMainlineReleaseResources
+
+> Task :app:compileMainlineReleaseKotlin
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/GamePropertiesFragment.kt:619:32 'getLayoutDirection(View): Int' is deprecated. Deprecated in Java
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/GamePropertiesFragment.kt:620:32 'LAYOUT_DIRECTION_LTR: Int' is deprecated. Deprecated in Java
+
+> Task :app:compileMainlineReleaseJavaWithJavac
+> Task :app:mergeMainlineReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :app:processMainlineReleaseJavaRes UP-TO-DATE
+> Task :app:mergeMainlineReleaseJavaResource UP-TO-DATE
+> Task :app:generateMainlineReleaseLintVitalReportModel
+> Task :app:expandMainlineReleaseArtProfileWildcards
+> Task :app:lintVitalAnalyzeMainlineRelease
+> Task :app:minifyMainlineReleaseWithR8
+> Task :app:lintVitalReportMainlineRelease
+> Task :app:lintVitalMainlineRelease
+> Task :app:compileMainlineReleaseArtProfile
+> Task :app:packageMainlineRelease
+> Task :app:createMainlineReleaseApkListingFileRedirect
+> Task :app:assembleMainlineRelease
+
+[Incubating] Problems report is available at: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2m 58s
+57 actionable tasks: 28 executed, 29 up-to-date
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :app
+WARNING: The option setting 'android.defaults.buildfeatures.buildconfig=true' is deprecated.
+The current default is 'false'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+To keep using this feature, add the following to your module-level build.gradle files:
+    android.buildFeatures.buildConfig = true
+or from Android Studio, click: `Refactor` > `Migrate BuildConfig to Gradle Build Files`.
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preMainlineReleaseBuild UP-TO-DATE
+> Task :app:configureCMakeRelWithDebInfo[arm64-v8a]
+
+> Task :app:buildCMakeRelWithDebInfo[arm64-v8a]
+C/C++: ninja: Entering directory `/home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/.cxx/RelWithDebInfo/21685t4h/arm64-v8a'
+C/C++: [0/2] Re-checking globbed directories...
+C/C++: ninja: no work to do.
+
+> Task :app:mergeMainlineReleaseJniLibFolders UP-TO-DATE
+> Task :app:mergeMainlineReleaseNativeLibs UP-TO-DATE
+> Task :app:stripMainlineReleaseDebugSymbols UP-TO-DATE
+> Task :app:extractMainlineReleaseNativeSymbolTables UP-TO-DATE
+> Task :app:mergeMainlineReleaseNativeDebugMetadata UP-TO-DATE
+> Task :app:buildKotlinToolingMetadata UP-TO-DATE
+> Task :app:checkMainlineReleaseDuplicateClasses UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:dataBindingMergeDependencyArtifactsMainlineRelease UP-TO-DATE
+> Task :app:generateMainlineReleaseResValues
+> Task :app:extractMainlineReleaseSupportedLocales
+> Task :app:generateMainlineReleaseLocaleConfig UP-TO-DATE
+> Task :app:generateMainlineReleaseResources UP-TO-DATE
+> Task :app:packageMainlineReleaseResources
+> Task :app:generateMainlineReleaseBuildConfig
+> Task :app:mergeMainlineReleaseResources
+> Task :app:parseMainlineReleaseLocalResources
+> Task :app:generateSafeArgsMainlineRelease
+> Task :app:dataBindingGenBaseClassesMainlineRelease UP-TO-DATE
+> Task :app:checkMainlineReleaseAarMetadata UP-TO-DATE
+> Task :app:mapMainlineReleaseSourceSetPaths UP-TO-DATE
+> Task :app:createMainlineReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksMainlineRelease
+> Task :app:processMainlineReleaseMainManifest
+> Task :app:processMainlineReleaseManifest
+> Task :app:javaPreCompileMainlineRelease UP-TO-DATE
+> Task :app:mergeMainlineReleaseArtProfile UP-TO-DATE
+> Task :app:extractProguardFiles UP-TO-DATE
+> Task :app:mergeMainlineReleaseStartupProfile UP-TO-DATE
+> Task :app:mergeMainlineReleaseShaders UP-TO-DATE
+> Task :app:compileMainlineReleaseShaders NO-SOURCE
+> Task :app:generateMainlineReleaseAssets UP-TO-DATE
+> Task :app:mergeMainlineReleaseAssets UP-TO-DATE
+> Task :app:compressMainlineReleaseAssets UP-TO-DATE
+> Task :app:extractMainlineReleaseVersionControlInfo UP-TO-DATE
+> Task :app:processMainlineReleaseManifestForPackage
+> Task :app:collectMainlineReleaseDependencies UP-TO-DATE
+> Task :app:sdkMainlineReleaseDependencyData UP-TO-DATE
+> Task :app:validateSigningMainlineRelease UP-TO-DATE
+> Task :app:writeMainlineReleaseAppMetadata UP-TO-DATE
+> Task :app:writeMainlineReleaseSigningConfigVersions UP-TO-DATE
+> Task :app:processMainlineReleaseResources
+> Task :app:optimizeMainlineReleaseResources
+
+> Task :app:compileMainlineReleaseKotlin
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/GamePropertiesFragment.kt:619:32 'getLayoutDirection(View): Int' is deprecated. Deprecated in Java
+w: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/GamePropertiesFragment.kt:620:32 'LAYOUT_DIRECTION_LTR: Int' is deprecated. Deprecated in Java
+
+> Task :app:compileMainlineReleaseJavaWithJavac
+> Task :app:mergeMainlineReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :app:processMainlineReleaseJavaRes UP-TO-DATE
+> Task :app:mergeMainlineReleaseJavaResource UP-TO-DATE
+> Task :app:generateMainlineReleaseLintVitalReportModel
+> Task :app:expandMainlineReleaseArtProfileWildcards
+> Task :app:lintVitalAnalyzeMainlineRelease
+> Task :app:minifyMainlineReleaseWithR8
+> Task :app:lintVitalReportMainlineRelease
+> Task :app:lintVitalMainlineRelease
+> Task :app:compileMainlineReleaseArtProfile
+> Task :app:packageMainlineRelease
+> Task :app:createMainlineReleaseApkListingFileRedirect
+> Task :app:assembleMainlineRelease
+
+[Incubating] Problems report is available at: file:///home/runner/work/eden-snapdragon/eden-snapdragon/src/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2m 52s
+57 actionable tasks: 28 executed, 29 up-to-date
+Cacheable calls:   3200 / 3238 (98.83%)
+  Hits:              26 / 3200 ( 0.81%)
+    Direct:           0 /   26 ( 0.00%)
+    Preprocessed:    26 /   26 (100.0%)
+  Misses:          3174 / 3200 (99.19%)
+Uncacheable calls:   38 / 3238 ( 1.17%)
+Local storage:
+  Cache size (GB):  0.5 /  3.0 (17.22%)
+  Hits:              26 / 3200 ( 0.81%)
+  Misses:          3174 / 3200 (99.19%)
