@@ -8,9 +8,12 @@ import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import android.os.Bundle
 import android.provider.DocumentsContract
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.ViewCompat
@@ -23,6 +26,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -51,6 +55,7 @@ import org.yuzu.yuzu_emu.utils.GameHelper
 import org.yuzu.yuzu_emu.utils.GameIconUtils
 import org.yuzu.yuzu_emu.utils.GpuDriverHelper
 import org.yuzu.yuzu_emu.utils.MemoryUtil
+import org.yuzu.yuzu_emu.utils.ShaderCacheTransfer
 import org.yuzu.yuzu_emu.utils.ViewUtils.marquee
 import org.yuzu.yuzu_emu.utils.ViewUtils.updateMargins
 import org.yuzu.yuzu_emu.utils.collect
@@ -67,6 +72,12 @@ class GamePropertiesFragment : Fragment() {
     private val driverViewModel: DriverViewModel by activityViewModels()
 
     private val args by navArgs<GamePropertiesFragmentArgs>()
+
+    private val shaderCacheDir: File
+        get() = File(
+            DirectoryInitialization.userDirectory +
+                "/cache/shader/" + args.game.settingsName.lowercase()
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -467,10 +478,34 @@ class GamePropertiesFragment : Fragment() {
                     )
                 }
 
-                val shaderCacheDir = File(
-                    DirectoryInitialization.userDirectory +
-                        "/cache/shader/" + args.game.settingsName.lowercase()
-                )
+                if ((args.game.programId.toLongOrNull() ?: 0L) != 0L) {
+                    add(
+                        SubmenuProperty(
+                            R.string.shader_cache_download,
+                            R.string.shader_cache_download_description,
+                            R.drawable.ic_import,
+                            action = { showShaderCacheDownloadDialog() }
+                        )
+                    )
+                    add(
+                        InstallableProperty(
+                            R.string.shader_cache_file,
+                            R.string.shader_cache_file_description,
+                            R.drawable.ic_build,
+                            { importShaderCache.launch(arrayOf("*/*")) },
+                            if (ShaderCacheTransfer.hasCache(shaderCacheDir)) {
+                                {
+                                    exportShaderCache.launch(
+                                        "${args.game.settingsName.lowercase()}-shaders.zip"
+                                    )
+                                }
+                            } else {
+                                null
+                            }
+                        )
+                    )
+                }
+
                 if (shaderCacheDir.exists()) {
                     add(
                         SubmenuProperty(
@@ -657,6 +692,95 @@ class GamePropertiesFragment : Fragment() {
                 }
             }.show(parentFragmentManager, ProgressDialogFragment.TAG)
         }
+
+    private fun shaderCacheMessage(result: ShaderCacheTransfer.Result): String = getString(
+        when (result) {
+            ShaderCacheTransfer.Result.Success -> R.string.shader_cache_installed
+            ShaderCacheTransfer.Result.Cancelled -> R.string.shader_cache_cancelled
+            ShaderCacheTransfer.Result.NoCacheInZip -> R.string.shader_cache_not_found
+            ShaderCacheTransfer.Result.WrongGame -> R.string.shader_cache_wrong_game
+            ShaderCacheTransfer.Result.Failed -> R.string.shader_cache_failed
+        }
+    )
+
+    private suspend fun finishShaderCacheInstall(result: ShaderCacheTransfer.Result): String {
+        withContext(Dispatchers.Main) { homeViewModel.reloadPropertiesList(true) }
+        return shaderCacheMessage(result)
+    }
+
+    private val importShaderCache =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { result ->
+            if (result == null) {
+                return@registerForActivityResult
+            }
+
+            ProgressDialogFragment.newInstance(
+                requireActivity(),
+                R.string.shader_cache_installing,
+                false
+            ) { _, _ ->
+                finishShaderCacheInstall(ShaderCacheTransfer.importFrom(shaderCacheDir, result))
+            }.show(parentFragmentManager, ProgressDialogFragment.TAG)
+        }
+
+    private val exportShaderCache = registerForActivityResult(
+        ActivityResultContracts.CreateDocument("application/zip")
+    ) { result ->
+        if (result == null) {
+            return@registerForActivityResult
+        }
+
+        ProgressDialogFragment.newInstance(
+            requireActivity(),
+            R.string.shader_cache_exporting,
+            false
+        ) { _, _ ->
+            val exported = ShaderCacheTransfer.export(shaderCacheDir, result)
+            getString(if (exported) R.string.export_success else R.string.export_failed)
+        }.show(parentFragmentManager, ProgressDialogFragment.TAG)
+    }
+
+    private fun showShaderCacheDownloadDialog() {
+        val context = requireContext()
+        val linkInput = EditText(context).apply {
+            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_URI
+            setSingleLine(true)
+            hint = getString(R.string.shader_cache_download_hint)
+        }
+        val padding = resources.getDimensionPixelSize(R.dimen.spacing_large)
+        val inputContainer = FrameLayout(context).apply {
+            setPadding(padding, 0, padding, 0)
+            addView(linkInput)
+        }
+
+        MaterialAlertDialogBuilder(context)
+            .setTitle(R.string.shader_cache_download)
+            .setMessage(R.string.shader_cache_download_message)
+            .setView(inputContainer)
+            .setPositiveButton(R.string.shader_cache_download_start) { _, _ ->
+                val link = linkInput.text.toString().trim()
+                if (!link.startsWith("https://")) {
+                    Toast.makeText(
+                        YuzuApplication.appContext,
+                        R.string.shader_cache_bad_link,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return@setPositiveButton
+                }
+
+                ProgressDialogFragment.newInstance(
+                    requireActivity(),
+                    R.string.shader_cache_downloading,
+                    true
+                ) { progressCallback, _ ->
+                    finishShaderCacheInstall(
+                        ShaderCacheTransfer.download(shaderCacheDir, link, progressCallback)
+                    )
+                }.show(parentFragmentManager, ProgressDialogFragment.TAG)
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
+    }
 
     /**
      * Exports the save file located in the given folder path by creating a zip file and opening a

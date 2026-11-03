@@ -23,3 +23,7 @@ The last two are separate apps with their own settings and saves.
   Auto locks Pokémon Pokopia to 30 FPS.
 - **Built-in frame generation works without Lossless Scaling.** It used to be greyed out unless the
   Lossless Scaling library was installed. Off by default.
+- **Shader packs** (long-press a game, then Properties): export a game's shaders to a zip, then import
+  it or download it from a link on another device, so they are ready before you play. A pack must
+  come from this same build, ideally on the same GPU family. None is included, because a pack is
+  built from the game's own shaders.
