@@ -1,0 +1,97 @@
+name: Build Snapdragon APKs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-snapdragon
+  cancel-in-progress: true
+
+jobs:
+  android:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    env:
+      GH_TOKEN: ${{ github.token }}
+      CCACHE_DIR: ${{ github.workspace }}/.ccache
+      CCACHE_MAXSIZE: 3G
+      # Gradle's .cxx folders are named by a config hash; relative paths keep cache hits stable.
+      CCACHE_BASEDIR: ${{ github.workspace }}
+      CMAKE_C_COMPILER_LAUNCHER: ccache
+      CMAKE_CXX_COMPILER_LAUNCHER: ccache
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Report start
+        run: .github/scripts/report-status.sh running
+
+      - name: Free disk space
+        run: sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/.ghcup /usr/share/swift
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      # The runner image has the SDK; add what the Gradle build asks for and the shader compiler.
+      - name: Install Android packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends glslang-tools ccache
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install \
+            "platforms;android-36" "build-tools;36.0.0" "ndk;28.2.13676358" "cmake;3.31.5" > /dev/null
+
+      - name: Cache CPM downloads
+        uses: actions/cache@v4
+        with:
+          path: .cache/cpm
+          key: cpm-android-${{ hashFiles('cpmfile.json', 'CMakeLists.txt', 'src/**/CMakeLists.txt') }}
+          restore-keys: |
+            cpm-android-
+
+      - name: Cache compiler objects
+        uses: actions/cache@v4
+        with:
+          path: .ccache
+          key: objects-android-${{ github.sha }}
+          restore-keys: |
+            objects-android-
+
+      # Same native build under three package names: only the first assemble compiles.
+      - name: Build APKs
+        working-directory: src/android
+        run: |
+          set -euo pipefail
+          chmod +x gradlew
+          mkdir -p "$GITHUB_WORKSPACE/dist"
+          for variant in \
+              "dev.eden.nx2|Eden SX2A|standard" \
+              "com.antutu.ABenchMark|Eden SX2A Boost|antutu-id" \
+              "com.miHoYo.Yuanshen|Eden SX2A Optimized|genshin-id"; do
+            IFS='|' read -r app_id label name <<< "$variant"
+            ./gradlew --no-daemon "-PappId=$app_id" "-PappLabel=$label" assembleMainlineRelease \
+              2>&1 | tee -a "$GITHUB_WORKSPACE/build.log"
+            apk=$(find app/build/outputs/apk/mainline/release -name '*.apk' | head -1)
+            cp "$apk" "$GITHUB_WORKSPACE/dist/Eden-SX2A-Snapdragon-$name.apk"
+          done
+          ccache --show-stats | tee -a "$GITHUB_WORKSPACE/build.log"
+
+      - name: Publish release
+        run: |
+          gh release create "build-$GITHUB_RUN_NUMBER" dist/*.apk \
+            --title "Snapdragon build $GITHUB_RUN_NUMBER" \
+            --notes-file SNAPDRAGON.md \
+            --prerelease
+
+      - name: Report result
+        if: always()
+        run: .github/scripts/report-status.sh "${{ job.status }}" build.log
