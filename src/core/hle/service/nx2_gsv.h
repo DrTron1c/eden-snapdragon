@@ -1592,44 +1592,46 @@ private:
     // timing: present word 12, (swap interval << 16) | refresh rate. Fire Emblem: Fortune's Weave
     // sends 0x1003c during its boot logos and 0x2003c (two vblanks per frame, 30 fps) after; paced
     // at every vblank it ran at double speed. EDEN_NX2_SWAP_INTERVAL=<n> forces the interval.
-    // Swap interval of the frame rate lock at 60 Hz, 0 for the game's own rate.
-    u32 FrameLockInterval() const {
+    // Frame rate the game is held to, 0 for its own rate.
+    u32 FrameRateLimit() const {
         static constexpr u64 PokemonPokopia = 0x0400A3A01EE4C000ULL;
-        switch (Settings::values.nx2_frame_lock.GetValue()) {
+        switch (Settings::values.nx2_fps_mode.GetValue()) {
         case 1:
             return 0;
         case 2:
-            return 2;
-        case 3:
-            return 3;
+            return Settings::values.nx2_fps_target.GetValue();
         default:
-            return system.GetApplicationProcessProgramID() == PokemonPokopia ? 2U : 0U;
+            return system.GetApplicationProcessProgramID() == PokemonPokopia ? 30U : 0U;
         }
     }
 
     void PaceToVblank(u32 timing) {
-        if (!Settings::values.use_speed_limit.GetValue() || Settings::SpeedLimit() == 0) {
+        const bool speed_limited =
+            Settings::values.use_speed_limit.GetValue() && Settings::SpeedLimit() != 0;
+        const u32 fps_limit = FrameRateLimit();
+        if (!speed_limited && fps_limit == 0) {
             return;
         }
         static const u32 forced_interval = [] {
             const char* value = std::getenv("EDEN_NX2_SWAP_INTERVAL");
             return value ? static_cast<u32>(std::strtoul(value, nullptr, 10)) : 0U;
         }();
-        u32 swap_interval =
+        const u32 swap_interval =
             forced_interval != 0 ? forced_interval : std::clamp<u32>(timing >> 16, 1, 4);
-        u32 refresh_rate = (timing & 0xffff) >= 30 && (timing & 0xffff) <= 240 ? timing & 0xffff : 60;
-        // The lock only ever slows a game down: one already at or under its rate keeps its timing.
-        if (const u32 lock_interval = FrameLockInterval();
-            lock_interval != 0 && swap_interval * 60 < lock_interval * refresh_rate) {
-            swap_interval = lock_interval;
-            refresh_rate = 60;
-        }
+        const u32 refresh_rate = (timing & 0xffff) >= 30 && (timing & 0xffff) <= 240 ? timing & 0xffff : 60;
         if (timing != std::exchange(m_swap_word, timing)) {
             LOG_INFO(Service, "nx2:vi2 present #{} swap interval {} at {} Hz (word 12 = {:#x})",
                      m_presents, swap_interval, refresh_rate, timing);
         }
-        const auto interval = std::chrono::nanoseconds{
-            100'000'000'000LL * swap_interval / refresh_rate / Settings::SpeedLimit()};
+        // In hundredths of a nanosecond, so the speed limit's percentage can divide it. The frame
+        // rate limit only ever slows a game down: one already at or under it keeps its timing.
+        long long scaled_interval =
+            speed_limited ? 100'000'000'000LL * swap_interval / refresh_rate : 0;
+        if (fps_limit != 0) {
+            scaled_interval = (std::max)(scaled_interval, 100'000'000'000LL / fps_limit);
+        }
+        const long long speed = speed_limited ? Settings::SpeedLimit() : 100;
+        const auto interval = std::chrono::nanoseconds{scaled_interval / speed};
         Common::ADPF::SetTargetWorkDuration(interval);
         const auto now = std::chrono::steady_clock::now();
         if (now > m_next_vblank + interval) {

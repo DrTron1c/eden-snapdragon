@@ -10,6 +10,7 @@ object Settings {
     enum class MenuTag(val titleId: Int = 0) {
         SECTION_ROOT(R.string.advanced_settings),
         SECTION_SYSTEM(R.string.preferences_system),
+        SECTION_PERFORMANCE(R.string.performance_settings),
         SECTION_RENDERER(R.string.preferences_graphics),
         SECTION_FRAME_GEN(R.string.frame_gen),
         SECTION_POST_PROCESSING(R.string.post_processing),
@@ -39,6 +40,9 @@ object Settings {
     fun GetDebugKnobAt(index: Int): Boolean {
         return org.yuzu.yuzu_emu.NativeLibrary.GetDebugKnobAt(index)
     }
+
+    // The value of IntSetting.RENDERER_FPS_MODE that uses IntSetting.RENDERER_FPS_TARGET
+    const val FPS_MODE_CUSTOM = 2
 
     const val PREF_FIRST_APP_LAUNCH = "FirstApplicationLaunch"
     const val PREF_SHOULD_SHOW_DRIVER_WARNING = "ShouldShowDriverWarning"

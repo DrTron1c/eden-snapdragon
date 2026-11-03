@@ -324,12 +324,21 @@
     <string name="frame_gen_type_description">Built-in needs nothing extra. Lossless Scaling needs your own copy of its library, added in the Lossless Scaling manager.</string>
     <string name="frame_gen_type_lossless">Lossless Scaling</string>
     <string name="frame_gen_type_built_in">Built-in (FSR 3 style)</string>
-    <string name="frame_lock">Frame rate lock</string>
-    <string name="frame_lock_description">Holds Switch 2 games to a steady rate so frame times stay even. It can\'t add performance: if a scene can\'t reach the lock, the frame rate still drops. Auto locks Pokémon Pokopia to 30 FPS and leaves other games alone.</string>
-    <string name="frame_lock_auto">Auto</string>
-    <string name="frame_lock_off">Off</string>
-    <string name="frame_lock_30">30 FPS</string>
-    <string name="frame_lock_20">20 FPS</string>
+    <string name="fps_mode">Frame rate</string>
+    <string name="fps_mode_description">Auto locks Pokémon Pokopia to 30 FPS and leaves other games alone. It can\'t add performance: if a scene can\'t reach your frame rate, it still drops.</string>
+    <string name="fps_mode_auto">Auto</string>
+    <string name="fps_mode_game">Game default</string>
+    <string name="fps_mode_custom">Custom</string>
+    <string name="fps_target">Target FPS</string>
+    <string name="fps_target_description">The most frames per second the game can run at. Setting it above the game\'s own frame rate does nothing.</string>
+    <string name="performance_settings">Performance</string>
+    <string name="performance_settings_description">Frame rate, frame generation, resolution and upscaling</string>
+    <string name="performance_settings_per_game_description">Frame rate, frame generation, resolution and upscaling for this game</string>
+    <string name="performance_frame_rate">Frame rate</string>
+    <string name="performance_picture">Resolution and upscaling</string>
+    <string name="performance_speed">Speed and accuracy</string>
+    <string name="renderer_resolution_description">The size the game is rendered at. Lower is faster. 1X is the game\'s normal resolution. Takes effect the next time the game starts.</string>
+    <string name="renderer_resolution_next_start">Resolution (next game start)</string>
     <string name="frame_gen_multiplier">Frame multiplier</string>
     <string name="frame_gen_multiplier_description">How many frames to display for each rendered frame. Higher values cost proportionally more GPU time. Asking for more than your display can present will slow emulation down.</string>
     <string name="frame_gen_multiplier_2x">2x</string>
@@ -642,9 +651,9 @@
     <string name="network">Network</string>
 
     <!-- Graphics settings strings -->
-    <string name="renderer_resolution">Resolution (Handheld/Docked)</string>
+    <string name="renderer_resolution">Resolution</string>
     <string name="renderer_vsync">VSync mode</string>
-    <string name="renderer_scaling_filter">Window adapting filter</string>
+    <string name="renderer_scaling_filter">Upscaling filter</string>
     <string name="fsr_sharpness">FSR/SGSR sharpness</string>
     <string name="fsr_sharpness_description">Determines how sharpened the image will look while using FSR or SGSR filters</string>
     <string name="renderer_anti_aliasing">Anti-aliasing method</string>
@@ -1256,15 +1265,17 @@
     <string name="vram_usage_aggressive">Aggressive</string>
 
     <!-- Resolutions -->
-    <string name="resolution_quarter" translatable="false">0.25X (180p/270p)</string>
-    <string name="resolution_half" translatable="false">0.5X (360p/540p)</string>
-    <string name="resolution_three_quarter" translatable="false">0.75X (540p/810p)</string>
-    <string name="resolution_one" translatable="false">1X (720p/1080p)</string>
-    <string name="resolution_five_quarter" translatable="false">1.25X (900p/1350p)</string>
-    <string name="resolution_three_half" translatable="false">1.5X (1080p/1620p)</string>
-    <string name="resolution_two" translatable="false">2X (1440p/2160p) (Slow)</string>
-    <string name="resolution_three" translatable="false">3X (2160p/3240p) (Slow)</string>
-    <string name="resolution_four" translatable="false">4X (2880p/4320p) (Slow)</string>
+    <string name="resolution_quarter" translatable="false">0.25X</string>
+    <string name="resolution_half" translatable="false">0.5X</string>
+    <string name="resolution_five_eighths" translatable="false">0.625X</string>
+    <string name="resolution_three_quarter" translatable="false">0.75X</string>
+    <string name="resolution_seven_eighths" translatable="false">0.875X</string>
+    <string name="resolution_one" translatable="false">1X (normal)</string>
+    <string name="resolution_five_quarter" translatable="false">1.25X</string>
+    <string name="resolution_three_half" translatable="false">1.5X</string>
+    <string name="resolution_two" translatable="false">2X (slow)</string>
+    <string name="resolution_three" translatable="false">3X (slow)</string>
+    <string name="resolution_four" translatable="false">4X (slow)</string>
 
     <!-- Renderer VSync -->
     <string name="renderer_vsync_immediate">Immediate (Off)</string>

@@ -417,6 +417,7 @@ abstract class SettingsItem(
                 SingleChoiceSetting(
                     IntSetting.RENDERER_RESOLUTION,
                     titleId = R.string.renderer_resolution,
+                    descriptionId = R.string.renderer_resolution_description,
                     choicesId = R.array.rendererResolutionNames,
                     valuesId = R.array.rendererResolutionValues,
                     warnChoices = (5..7).toList(),
@@ -687,11 +688,21 @@ abstract class SettingsItem(
             )
             put(
                 SingleChoiceSetting(
-                    IntSetting.RENDERER_FRAME_LOCK,
-                    titleId = R.string.frame_lock,
-                    descriptionId = R.string.frame_lock_description,
-                    choicesId = R.array.frameLockNames,
-                    valuesId = R.array.frameLockValues
+                    IntSetting.RENDERER_FPS_MODE,
+                    titleId = R.string.fps_mode,
+                    descriptionId = R.string.fps_mode_description,
+                    choicesId = R.array.fpsModeNames,
+                    valuesId = R.array.fpsModeValues
+                )
+            )
+            put(
+                SliderSetting(
+                    IntSetting.RENDERER_FPS_TARGET,
+                    titleId = R.string.fps_target,
+                    descriptionId = R.string.fps_target_description,
+                    min = 10,
+                    max = 120,
+                    units = " FPS"
                 )
             )
             put(

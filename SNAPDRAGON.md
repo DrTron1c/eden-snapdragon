@@ -19,8 +19,14 @@ The last two are separate apps with their own settings and saves.
 - **Fewer render pass splits**, from Eglantine `f5009903`. They are expensive on tiled GPUs like Adreno.
 - **Android performance hints for Switch 2 games.** Render threads rely on these for core placement,
   and only the Switch 1 present path was reporting frames.
-- **Frame rate lock** (Graphics settings and in-game Quick Settings): Auto, Off, 30 FPS, 20 FPS.
-  Auto locks Pokémon Pokopia to 30 FPS.
+- **Performance screen**: frame rate, frame generation, resolution, upscaling and accuracy in one
+  place. Open it from Home, from a game's Properties (per game), or use the same controls in-game
+  in Quick Settings.
+- **Custom frame rate**: Auto, Game default, or any Custom target from 10 to 120 FPS. Auto locks
+  Pokémon Pokopia to 30 FPS. A target above the game's own rate has no effect.
+- **More resolution steps**: 0.625X and 0.875X. Resolution changes apply the next time the game starts.
+- **Upscaling filter names fixed**: MMPX, Zero-Tangent, B-Spline, Mitchell and Spline-1 were showing
+  the wrong labels.
 - **Built-in frame generation works without Lossless Scaling.** It used to be greyed out unless the
   Lossless Scaling library was installed. Off by default.
 - **Shader packs** (long-press a game, then Properties): export a game's shaders to a zip, then import

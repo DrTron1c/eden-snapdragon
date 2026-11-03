@@ -292,6 +292,20 @@ class GamePropertiesFragment : Fragment() {
             )
             add(
                 SubmenuProperty(
+                    R.string.performance_settings,
+                    R.string.performance_settings_per_game_description,
+                    R.drawable.ic_graphics,
+                    action = {
+                        val action = HomeNavigationDirections.actionGlobalSettingsActivity(
+                            args.game,
+                            Settings.MenuTag.SECTION_PERFORMANCE
+                        )
+                        binding.root.findNavController().navigate(action)
+                    }
+                )
+            )
+            add(
+                SubmenuProperty(
                     R.string.preferences_settings,
                     R.string.per_game_settings_description,
                     R.drawable.ic_settings,

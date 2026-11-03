@@ -383,7 +383,9 @@ class SettingsDialogFragment : DialogFragment(), DialogInterface.OnClickListener
                 scSetting.setSelectedValue(value)
 
                 if (scSetting.setting.key == IntSetting.RENDERER_SCALING_FILTER.key ||
-                    scSetting.setting.key == IntSetting.RENDERER_FRAME_GEN_TARGET_RATE.key
+                    scSetting.setting.key == IntSetting.RENDERER_FRAME_GEN_TARGET_RATE.key ||
+                    scSetting.setting.key == IntSetting.RENDERER_FRAME_GEN_TYPE.key ||
+                    scSetting.setting.key == IntSetting.RENDERER_FPS_MODE.key
                 ) {
                     settingsViewModel.setShouldReloadSettingsList(true)
                 }

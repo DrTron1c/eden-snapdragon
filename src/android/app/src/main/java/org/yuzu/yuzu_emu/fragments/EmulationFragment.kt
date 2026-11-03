@@ -1132,6 +1132,111 @@ class EmulationFragment : Fragment(), SurfaceHolder.Callback {
                 quickSettings.addPerGameConfigStatusIndicator(container)
             }
 
+            quickSettings.addIntSetting(
+                R.string.fps_mode,
+                container,
+                IntSetting.RENDERER_FPS_MODE,
+                R.array.fpsModeNames,
+                R.array.fpsModeValues
+            ) {
+                addQuickSettings()
+            }
+
+            if (IntSetting.RENDERER_FPS_MODE.getInt(needsGlobal = false) ==
+                Settings.FPS_MODE_CUSTOM
+            ) {
+                quickSettings.addSliderSetting(
+                    R.string.fps_target,
+                    container,
+                    IntSetting.RENDERER_FPS_TARGET,
+                    minValue = 10,
+                    maxValue = 120,
+                    units = " FPS"
+                )
+            }
+
+            quickSettings.addIntSetting(
+                R.string.renderer_vsync,
+                container,
+                IntSetting.RENDERER_VSYNC,
+                R.array.rendererVSyncNames,
+                R.array.rendererVSyncValues
+            )
+
+            quickSettings.addDivider(container)
+
+            quickSettings.addIntSetting(
+                R.string.frame_gen_type,
+                container,
+                IntSetting.RENDERER_FRAME_GEN_TYPE,
+                R.array.frameGenTypeNames,
+                R.array.frameGenTypeValues
+            ) {
+                addQuickSettings()
+            }
+
+            if (LosslessScalingHelper.canGenerateFrames(
+                    IntSetting.RENDERER_FRAME_GEN_TYPE.getInt(needsGlobal = false)
+                )
+            ) {
+                quickSettings.addFrameGen(container)
+            }
+
+            quickSettings.addDivider(container)
+
+            quickSettings.addIntSetting(
+                R.string.renderer_resolution_next_start,
+                container,
+                IntSetting.RENDERER_RESOLUTION,
+                R.array.rendererResolutionNames,
+                R.array.rendererResolutionValues
+            )
+
+            quickSettings.addBooleanSetting(
+                R.string.use_docked_mode,
+                container,
+                BooleanSetting.USE_DOCKED_MODE,
+            )
+
+            quickSettings.addIntSetting(
+                R.string.renderer_scaling_filter,
+                container,
+                IntSetting.RENDERER_SCALING_FILTER,
+                R.array.rendererScalingFilterNames,
+                R.array.rendererScalingFilterValues
+            ) {
+                addQuickSettings()
+            }
+
+            if (isSharpnessFilterSelected) {
+                quickSettings.addSliderSetting(
+                    R.string.fsr_sharpness,
+                    container,
+                    IntSetting.FSR_SHARPENING_SLIDER,
+                    minValue = 0,
+                    maxValue = 200,
+                    units = "%"
+                )
+            }
+
+            quickSettings.addIntSetting(
+                R.string.renderer_anti_aliasing,
+                container,
+                IntSetting.RENDERER_ANTI_ALIASING,
+                R.array.rendererAntiAliasingNames,
+                R.array.rendererAntiAliasingValues
+            )
+
+            quickSettings.addIntSetting(
+                R.string.renderer_accuracy,
+                container,
+                IntSetting.RENDERER_ACCURACY,
+                R.array.rendererAccuracyNames,
+                R.array.rendererAccuracyValues
+            )
+
+            quickSettings.addDivider(container)
+
             lateinit var slowSpeed: MaterialSwitch
             lateinit var turboSpeed: MaterialSwitch
 
@@ -1183,69 +1288,7 @@ class EmulationFragment : Fragment(), SurfaceHolder.Callback {
                 units = "%",
             )
 
-            quickSettings.addBooleanSetting(
-                R.string.use_docked_mode,
-                container,
-                BooleanSetting.USE_DOCKED_MODE,
-            )
-
             quickSettings.addDivider(container)
-
-            quickSettings.addIntSetting(
-                R.string.frame_lock,
-                container,
-                IntSetting.RENDERER_FRAME_LOCK,
-                R.array.frameLockNames,
-                R.array.frameLockValues
-            )
-
-            quickSettings.addDivider(container)
-
-            if (LosslessScalingHelper.canGenerateFrames(
-                    IntSetting.RENDERER_FRAME_GEN_TYPE.getInt(needsGlobal = false)
-                )
-            ) {
-                quickSettings.addFrameGen(container)
-                quickSettings.addDivider(container)
-            }
-
-            quickSettings.addIntSetting(
-                R.string.renderer_accuracy,
-                container,
-                IntSetting.RENDERER_ACCURACY,
-                R.array.rendererAccuracyNames,
-                R.array.rendererAccuracyValues
-            )
-
-
-            quickSettings.addIntSetting(
-                R.string.renderer_scaling_filter,
-                container,
-                IntSetting.RENDERER_SCALING_FILTER,
-                R.array.rendererScalingFilterNames,
-                R.array.rendererScalingFilterValues
-            ) {
-                addQuickSettings()
-            }
-
-            if (isSharpnessFilterSelected) {
-                quickSettings.addSliderSetting(
-                    R.string.fsr_sharpness,
-                    container,
-                    IntSetting.FSR_SHARPENING_SLIDER,
-                    minValue = 0,
-                    maxValue = 200,
-                    units = "%"
-                )
-            }
-
-            quickSettings.addIntSetting(
-                R.string.renderer_anti_aliasing,
-                container,
-                IntSetting.RENDERER_ANTI_ALIASING,
-                R.array.rendererAntiAliasingNames,
-                R.array.rendererAntiAliasingValues
-            )
 
             quickSettings.addPostProcessing(container) {
                 addQuickSettings()

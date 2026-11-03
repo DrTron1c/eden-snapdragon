@@ -488,13 +488,22 @@ struct Values {
                                                         false,
                                                         &frame_gen};
 
-    // Frame rate lock for Switch 2 titles. 0: Auto (30 FPS for Pokémon Pokopia, otherwise the
-    // game's own rate), 1: Off, 2: 30 FPS, 3: 20 FPS.
-    SwitchableSetting<u32, true> nx2_frame_lock{linkage,
-                                                0,
-                                                0,
-                                                3,
-                                                "nx2_frame_lock",
+    // Frame rate of Switch 2 titles. 0: Auto (30 FPS for Pokémon Pokopia, otherwise the game's own
+    // rate), 1: the game's own rate, 2: nx2_fps_target.
+    SwitchableSetting<u32, true> nx2_fps_mode{linkage,
+                                              0,
+                                              0,
+                                              2,
+                                              "nx2_fps_mode",
+                                              Category::Renderer,
+                                              Specialization::Default,
+                                              true,
+                                              true};
+    SwitchableSetting<u32, true> nx2_fps_target{linkage,
+                                                30,
+                                                10,
+                                                120,
+                                                "nx2_fps_target",
                                                 Category::Renderer,
                                                 Specialization::Default,
                                                 true,

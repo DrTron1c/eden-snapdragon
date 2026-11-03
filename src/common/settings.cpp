@@ -331,6 +331,16 @@ void TranslateResolutionInfo(ResolutionSetup setup, ResolutionScalingInfo& info)
         info.down_shift = 2;
         info.downscale = true;
         break;
+    case ResolutionSetup::Res5_8X:
+        info.up_scale = 5;
+        info.down_shift = 3;
+        info.downscale = true;
+        break;
+    case ResolutionSetup::Res7_8X:
+        info.up_scale = 7;
+        info.down_shift = 3;
+        info.downscale = true;
+        break;
     case ResolutionSetup::Res1X:
         info.up_scale = 1;
         info.down_shift = 0;

@@ -153,7 +153,9 @@
     <string-array name="rendererResolutionNames">
         <item>@string/resolution_quarter</item>
         <item>@string/resolution_half</item>
+        <item>@string/resolution_five_eighths</item>
         <item>@string/resolution_three_quarter</item>
+        <item>@string/resolution_seven_eighths</item>
         <item>@string/resolution_one</item>
         <item>@string/resolution_five_quarter</item>
         <item>@string/resolution_three_half</item>
@@ -162,18 +164,16 @@
         <item>@string/resolution_four</item>
     </string-array>
 
-    <string-array name="frameLockNames">
-        <item>@string/frame_lock_auto</item>
-        <item>@string/frame_lock_off</item>
-        <item>@string/frame_lock_30</item>
-        <item>@string/frame_lock_20</item>
+    <string-array name="fpsModeNames">
+        <item>@string/fps_mode_auto</item>
+        <item>@string/fps_mode_game</item>
+        <item>@string/fps_mode_custom</item>
     </string-array>
 
-    <integer-array name="frameLockValues">
+    <integer-array name="fpsModeValues">
         <item>0</item>
         <item>1</item>
         <item>2</item>
-        <item>3</item>
     </integer-array>
 
     <string-array name="frameGenTypeNames">
@@ -240,7 +240,9 @@
     <integer-array name="rendererResolutionValues">
         <item>0</item>
         <item>1</item>
+        <item>13</item>
         <item>2</item>
+        <item>14</item>
         <item>3</item>
         <item>4</item>
         <item>5</item>
@@ -320,11 +322,11 @@
         <item>5</item>
         <item>6</item>
         <item>7</item>
+        <item>12</item>
         <item>8</item>
         <item>9</item>
         <item>10</item>
         <item>11</item>
-        <item>12</item>
         <item>13</item>
         <item>14</item>
         <item>15</item>

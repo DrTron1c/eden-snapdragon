@@ -101,6 +101,20 @@ class HomeSettingsFragment : Fragment() {
             )
             add(
                 HomeSetting(
+                    R.string.performance_settings,
+                    R.string.performance_settings_description,
+                    R.drawable.ic_graphics,
+                    {
+                        val action = HomeNavigationDirections.actionGlobalSettingsActivity(
+                            null,
+                            Settings.MenuTag.SECTION_PERFORMANCE
+                        )
+                        binding.root.findNavController().navigate(action)
+                    }
+                )
+            )
+            add(
+                HomeSetting(
                     R.string.advanced_settings,
                     R.string.settings_description,
                     R.drawable.ic_settings,

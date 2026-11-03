@@ -88,6 +88,46 @@ class SettingsFragmentPresenter(
         }
     }
 
+    private fun ArrayList<SettingsItem>.addFrameRateSettings() {
+        add(IntSetting.RENDERER_FPS_MODE.key)
+        if (IntSetting.RENDERER_FPS_MODE.getInt(
+                getNeedsGlobalForKey(IntSetting.RENDERER_FPS_MODE.key)
+            ) == Settings.FPS_MODE_CUSTOM
+        ) {
+            add(IntSetting.RENDERER_FPS_TARGET.key)
+        }
+    }
+
+    // Everything that trades speed against picture quality, in one place.
+    private fun addPerformanceSettings(sl: ArrayList<SettingsItem>) {
+        sl.apply {
+            add(HeaderSetting(R.string.performance_frame_rate))
+            addFrameRateSettings()
+            add(IntSetting.RENDERER_VSYNC.key)
+
+            add(HeaderSetting(R.string.frame_gen))
+            addFrameGenSettings(this)
+
+            add(HeaderSetting(R.string.performance_picture))
+            add(IntSetting.RENDERER_RESOLUTION.key)
+            add(BooleanSetting.USE_DOCKED_MODE.key)
+            add(IntSetting.RENDERER_SCALING_FILTER.key)
+            if (isSharpnessScalingFilterSelected()) {
+                add(IntSetting.FSR_SHARPENING_SLIDER.key)
+            }
+            add(IntSetting.RENDERER_ANTI_ALIASING.key)
+            add(IntSetting.RENDERER_ASPECT_RATIO.key)
+
+            add(HeaderSetting(R.string.performance_speed))
+            add(BooleanSetting.RENDERER_USE_SPEED_LIMIT.key)
+            add(ShortSetting.RENDERER_SPEED_LIMIT.key)
+            add(IntSetting.RENDERER_ACCURACY.key)
+            add(BooleanSetting.RENDERER_ASYNCHRONOUS_SHADERS.key)
+            add(BooleanSetting.RENDERER_USE_DISK_SHADER_CACHE.key)
+            add(IntSetting.CPU_BACKEND.key)
+        }
+    }
+
     private fun addFrameGenSettings(sl: ArrayList<SettingsItem>) {
         sl.apply {
             val frameGenType = IntSetting.RENDERER_FRAME_GEN_TYPE.getInt(
@@ -177,6 +217,7 @@ class SettingsFragmentPresenter(
         when (menuTag) {
             MenuTag.SECTION_ROOT -> addConfigSettings(sl)
             MenuTag.SECTION_SYSTEM -> addSystemSettings(sl)
+            MenuTag.SECTION_PERFORMANCE -> addPerformanceSettings(sl)
             MenuTag.SECTION_RENDERER -> addGraphicsSettings(sl)
             MenuTag.SECTION_FRAME_GEN -> addFrameGenSettings(sl)
             MenuTag.SECTION_POST_PROCESSING -> addPostProcessingSettings(sl)
@@ -414,6 +455,14 @@ class SettingsFragmentPresenter(
         sl.apply {
             add(
                 SubmenuSetting(
+                    titleId = R.string.performance_settings,
+                    descriptionId = R.string.performance_settings_description,
+                    iconId = R.drawable.ic_graphics,
+                    menuKey = MenuTag.SECTION_PERFORMANCE
+                )
+            )
+            add(
+                SubmenuSetting(
                     titleId = R.string.preferences_system,
                     descriptionId = R.string.preferences_system_description,
                     iconId = R.drawable.ic_system_settings,
@@ -534,7 +583,7 @@ class SettingsFragmentPresenter(
     private fun addGraphicsSettings(sl: ArrayList<SettingsItem>) {
         sl.apply {
             add(IntSetting.RENDERER_RESOLUTION.key)
-            add(IntSetting.RENDERER_FRAME_LOCK.key)
+            addFrameRateSettings()
             add(IntSetting.RENDERER_VSYNC.key)
             add(IntSetting.RENDERER_SCALING_FILTER.key)
             if (isSharpnessScalingFilterSelected()) {

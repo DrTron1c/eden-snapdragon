@@ -264,7 +264,7 @@ class Switch2ReadinessFragment : Fragment() {
             ),
             settingCheck(
                 R.string.readiness_resolution,
-                resolution <= RESOLUTION_1X,
+                resolution <= RESOLUTION_1X || resolution in RESOLUTIONS_BELOW_1X,
                 R.string.readiness_resolution_ok,
                 R.string.readiness_resolution_bad,
                 Fix.GRAPHICS_SETTINGS
@@ -622,6 +622,7 @@ class Switch2ReadinessFragment : Fragment() {
     companion object {
         private const val CPU_BACKEND_DYNARMIC = 0
         private const val RESOLUTION_1X = 3
+        private val RESOLUTIONS_BELOW_1X = setOf(13, 14) // Res5_8X and Res7_8X
         private const val KEY_ASYNC_PRESENTATION = "async_presentation"
         private const val DEBUG_ENV_FILE = "nx2_env.txt"
         private const val MIN_FREE_STORAGE_GB = 10
